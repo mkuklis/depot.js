@@ -1,3 +1,9 @@
+/* ----------------------------------
+ * depot.js v0.1.0
+ * Licensed under The MIT License
+ * http://opensource.org/licenses/MIT
+ * ---------------------------------- */
+
 // commonjs, amd, global
 (function (name, root, factory) {
   if (typeof exports === 'object') {
