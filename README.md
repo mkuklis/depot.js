@@ -6,8 +6,10 @@
 
 ### Description
 
-**depot.js** is a wrapper around [localStorage](http://diveintohtml5.info/storage.html) with a simple API. There are
-[other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but non of them had what I was looking for. depot.js should work well with CommonJS and AMD loaders. If loaders are not present depot.js will attach itself to the current context (window). 
+**depot.js** is a namespaced [localStorage](http://diveintohtml5.info/storage.html) wrapper with a simple API.
+There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but non 
+of them had what I was looking for. depot.js should work well with CommonJS and AMD loaders. 
+If loaders are not present depot.js will attach itself to the current context (window). 
 
 ### API
 

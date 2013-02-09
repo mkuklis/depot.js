@@ -1,6 +1,6 @@
 {
   "name": "depot",
-  "description": "depot.js is a wrapper around localStorage with a simple API.",
+  "description": "depot.js is a namespaced localStorage wrapper with a simple API.",
   "main": "depot.js",
   "version": "0.1.0",
   "dependencies": {
