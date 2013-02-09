@@ -1,0 +1,15 @@
+{
+  "name": "depot",
+  "author": {
+    "name": "Michal Kuklis",
+    "email": "michal.kuklis@gmail.com"
+  },
+  "version": "0.1.0",
+  "analyze": false,
+  "devDependencies": {
+    "mocha-phantomjs": "latest"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
