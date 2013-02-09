@@ -95,7 +95,12 @@
     },
 
     destroyAll: function () {
-      localStorage.clear();
+      this.ids.forEach(function (id) {
+        localStorage.removeItem(this.name + "-" + id);
+      }, this);
+
+      localStorage.removeItem(this.name);
+      this.ids = [];
     }
   };
 
@@ -133,7 +138,7 @@
     return Object.create(api, { 
       name: { value: name },
       store: { value: store },
-      ids: { value: (store && store.split(",")) || [] }
+      ids: { value: (store && store.split(",")) || [], writable: true }
     });
   }
 

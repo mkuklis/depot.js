@@ -69,6 +69,18 @@ describe('depot', function () {
     expect(todos.length).to.equal(0);
   });
 
+  it("should only destroy todo records", function () {
+    var projectStore = depot('projects');
+    projectStore.save({ name: "project1" });
+
+    this.store.destroyAll();
+    var todos = this.store.all();
+    expect(todos.length).to.equal(0);
+
+    var projects = projectStore.all();
+    expect(projects.length).to.equal(1);
+  });
+
   it("should return all records", function () {
     var todos = this.store.all();
     expect(todos.length).to.equal(2);
