@@ -29,7 +29,8 @@ Add new records (id property will be generated and attached to each new record):
 
 ```js
 todoStore.save({ title: "todo1" });
-todoStore.save({ title: "todo2" });
+todoStore.save({ title: "todo2", completed: true });
+todoStore.save({ title: "todo3", completed: true });
 ```
 
 Return all records:
@@ -41,7 +42,7 @@ todoStore.all(); // [{ id: 1, title "todo1" }, {id: 2, title: todo2 }]
 Find records for given criteria:
 
 ```js
-todoStore.find({ title: "todo1" }); // [{ id: 1, title: "todo2" }] 
+todoStore.find({ completed: true }); // [{ id: 2, title: "todo2" }, { id: 3, title: "todo3" }]
 ```
 
 Return single record by id:
