@@ -1,3 +1,7 @@
+### Depot.js
+
+![depot.js](http://oi45.tinypic.com/xoiq7l.jpg)
+
 ### Description
 
 **depot.js** is a wrapper around [localStorage](http://diveintohtml5.info/storage.html) with a simple API. There are
@@ -33,6 +37,12 @@ Add new records (id property will be generated and attached to each new record):
 todoStore.save({ title: "todo1" });
 todoStore.save({ title: "todo2", completed: true });
 todoStore.save({ title: "todo3", completed: true });
+```
+
+Update all records: 
+
+```js
+todoStore.updateAll({ completed: false });
 ```
 
 Return all records:
