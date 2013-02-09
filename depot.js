@@ -30,19 +30,42 @@
       return record;
     },
 
-    find: function (record) {
-      var id = (record.id) ? record.id : record;
-      return jsonData(localStorage.getItem(this.name + "-" + id));
+    find: function (criteria) {
+      var key, match, record;
+      var name = this.name;
+
+      return this.ids.reduce(function (memo, id) {
+        record = localStorage.getItem(name + "-" + id);
+        
+        if (record) {
+          record = jsonData(record);
+          match = true;
+          
+          for (key in criteria) {
+            match &= (criteria[key] == record[key]);
+          }
+
+          if (match) {
+            memo.push(record);
+          }
+        }
+
+        return memo;
+      }, []);
+    },
+
+    get: function (id) {
+      return jsonData(localStorage.getItem(this.name + "-" + id)); 
     },
 
     all: function () {
       var record, name = this.name;
 
       return this.ids.reduce(function (memo, id) {
-        record =  localStorage.getItem(name + "-" + id);
+        record = localStorage.getItem(name + "-" + id);
 
         if (record) {
-          memo.push(jsonData(localStorage.getItem(name + "-" + id)));
+          memo.push(jsonData(record));
         }
 
         return memo;
