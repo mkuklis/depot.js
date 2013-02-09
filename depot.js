@@ -100,6 +100,7 @@
   };
 
   // helpers
+  
   function jsonData(data) {
     return data && JSON.parse(data);
   }
@@ -111,6 +112,16 @@
   function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + 
       '-' +s4() + '-' + s4() + s4() + s4();
+  }
+
+  function extend(dest, source) {
+    for (var key in source) {
+      if (typeof source[key] != "undefined") {
+        dest[key] = source[key];
+      }
+    }
+
+    return dest;
   }
 
   function depot(name) {
