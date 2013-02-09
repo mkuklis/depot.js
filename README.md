@@ -66,9 +66,9 @@ todoStore.get(1); // { id: 1, title: "todo1" }
 Destroy single record:
 
 ```js
-// pass id
+// by id
 todoStore.destroy(1);
-// or record
+// or by record
 todoStore.destroy(todo);
 ```
 
