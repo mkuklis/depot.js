@@ -1,5 +1,7 @@
 ### Depot.js
 
+[![build status](https://secure.travis-ci.org/mkuklis/depot.js.png)](http://travis-ci.org/mkuklis/depot.js)
+
 ![depot.js](http://oi45.tinypic.com/xoiq7l.jpg)
 
 ### Description
