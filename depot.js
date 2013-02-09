@@ -22,12 +22,21 @@
 
       if (this.ids.indexOf(record.id) < 0) {
         this.ids.push(record.id);
+        localStorage.setItem(this.name, this.ids.join(","));
       }
 
       localStorage.setItem(this.name + "-" + record.id, JSON.stringify(record));
-      localStorage.setItem(this.name, this.ids.join(","));
 
       return record;
+    },
+
+    updateAll: function (data) {
+      var records = this.all();
+
+      records.forEach(function (record) {
+        record = extend(record, data);
+        this.save(record);
+      }, this);
     },
 
     find: function (criteria) {

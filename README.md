@@ -7,6 +7,8 @@
 
 + save(record)
 
++ updateAll(data)
+
 + find(hash)
 
 + all()
