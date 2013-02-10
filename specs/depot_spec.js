@@ -2,9 +2,12 @@ describe('depot', function () {
 
   beforeEach(function () {
     this.store = depot('todos');
-    this.store.destroyAll(); 
     this.todo1 = this.store.save({ title: 'todo1' });
     this.todo2 = this.store.save({ title: 'todo2' });
+  });
+
+  afterEach(function () {
+    this.store.destroyAll();
   });
 
   it("should save new records", function () {
@@ -79,6 +82,7 @@ describe('depot', function () {
 
     var projects = projectStore.all();
     expect(projects.length).to.equal(1);
+    projectStore.destroyAll();
   });
 
   it("should return all records", function () {

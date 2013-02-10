@@ -31,7 +31,7 @@
         localStorage.setItem(this.name, this.ids.join(","));
       }
 
-      localStorage.setItem(this.name + "-" + record.id, JSON.stringify(record));
+      localStorage.setItem(getKey(this.name, record.id), JSON.stringify(record));
 
       return record;
     },
@@ -45,19 +45,21 @@
       }, this);
     },
 
-    find: function (criteria) {
+    find: function (query) {
       var key, match, record;
       var name = this.name;
 
       return this.ids.reduce(function (memo, id) {
-        record = localStorage.getItem(name + "-" + id);
+        record = localStorage.getItem(getKey(name, id));
         
         if (record) {
           record = jsonData(record);
           match = true;
-          
-          for (key in criteria) {
-            match &= (criteria[key] == record[key]);
+
+          if (query) {
+            for (key in query) {
+              match &= (query[key] == record[key]);
+            }
           }
 
           if (match) {
@@ -70,14 +72,14 @@
     },
 
     get: function (id) {
-      return jsonData(localStorage.getItem(this.name + "-" + id)); 
+      return jsonData(localStorage.getItem(getKey(this.name, id))); 
     },
 
     all: function () {
       var record, name = this.name;
 
       return this.ids.reduce(function (memo, id) {
-        record = localStorage.getItem(name + "-" + id);
+        record = localStorage.getItem(getKey(name, id));
 
         if (record) {
           memo.push(jsonData(record));
@@ -91,7 +93,7 @@
       var index;
       var id = (record.id) ? record.id : record;
 
-      localStorage.removeItem(this.name + "-" + id);
+      localStorage.removeItem(getKey(this.name, id));
 
       index = this.ids.indexOf(id);
       if (index != -1) this.ids.splice(index, 1); 
@@ -102,7 +104,7 @@
 
     destroyAll: function () {
       this.ids.forEach(function (id) {
-        localStorage.removeItem(this.name + "-" + id);
+        localStorage.removeItem(getKey(this.name, id));
       }, this);
 
       localStorage.removeItem(this.name);
@@ -116,8 +118,13 @@
     return data && JSON.parse(data);
   }
 
+  function getKey(name, id) {
+    return name + "-" + id;
+  }
+
   function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16).substring(1);
   }
 
   function guid() {
@@ -127,7 +134,7 @@
 
   function extend(dest, source) {
     for (var key in source) {
-      if (typeof source[key] != "undefined") {
+      if (source.hasOwnProperty(key)) {
         dest[key] = source[key];
       }
     }
@@ -136,15 +143,17 @@
   }
 
   function depot(name) {
+    var store, ids;
 
     if (!localStorage) throw new Error("localStorage not found");
 
-    var store = localStorage.getItem(name);
+    store = localStorage.getItem(name);
+    ids = (store && store.split(",")) || [];
 
     return Object.create(api, { 
       name: { value: name },
       store: { value: store },
-      ids: { value: (store && store.split(",")) || [], writable: true }
+      ids: { value: ids, writable: true }
     });
   }
 
