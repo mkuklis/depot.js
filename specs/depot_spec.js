@@ -48,7 +48,8 @@ describe('depot', function () {
   });
 
   it("should return record by id", function () {
-    var todo = this.store.get(this.todo1.id);
+    console.log(this.todo1);
+    var todo = this.store.get(this.todo1._id);
     expect(todo)
       .to.have.property('title')
       .and.to.equal("todo1");
@@ -61,7 +62,7 @@ describe('depot', function () {
   });
 
   it("should destroy single record by id", function () {
-    this.store.destroy(this.todo1.id);
+    this.store.destroy(this.todo1._id);
     var todos = this.store.all();
     expect(todos.length).to.equal(1);
   });
@@ -100,13 +101,13 @@ describe('depot', function () {
   });
 
   it("should accept configurable id attribute", function() {
-    var store = depot('todos', { idAttribute: '_id' });
+    var store = depot('todos', { idAttribute: 'id' });
     var todo = store.save({ title: 'todo3' });
 
-    var result = store.get(todo._id);
+    var result = store.get(todo.id);
     expect(result).to.be.ok;
 
-    store.destroy(todo._id);
+    store.destroy(todo.id);
     var todos = store.all();
     expect(todos.length).to.equal(2);
   });

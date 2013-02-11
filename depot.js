@@ -22,16 +22,20 @@
   var api = {
 
     save: function (record) {
+      var id;
+
       if (!record[this.idAttribute]) {
         record[this.idAttribute] = guid();
       }
 
-      if (this.ids.indexOf(record.id) < 0) {
-        this.ids.push(record.id);
+      id = record[this.idAttribute];
+
+      if (this.ids.indexOf(id) < 0) {
+        this.ids.push(id);
         localStorage.setItem(this.name, this.ids.join(","));
       }
 
-      localStorage.setItem(getKey(this.name, record[this.idAttribute]), JSON.stringify(record));
+      localStorage.setItem(getKey(this.name, id), JSON.stringify(record));
 
       return record;
     },
@@ -51,7 +55,7 @@
 
       return this.ids.reduce(function (memo, id) {
         record = localStorage.getItem(getKey(name, id));
-        
+
         if (record) {
           record = jsonData(record);
           match = true;
@@ -155,7 +159,7 @@
       name: { value: name },
       store: { value: store },
       ids: { value: ids, writable: true },
-      idAttribute: { value: options.idAttribute || 'id' }
+      idAttribute: { value: options.idAttribute || '_id' }
     });
   }
 
