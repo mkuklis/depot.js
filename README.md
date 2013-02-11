@@ -35,7 +35,7 @@ Define new store:
 var todoStore = depot('todos');
 ```
 
-Add new records (id property will be generated and attached to each new record):
+Add new records (_id property will be generated and attached to each new record):
 
 ```js
 todoStore.save({ title: "todo1" });
@@ -82,8 +82,28 @@ Destroy all records:
 todoStore.destroyAll();
 ```
 
+###Options
 
-##License:
+You can pass a second parameter to depo.js with additional options.
+
+```js
+var todoStore = depot("todos", options);
+```
+
+Currently the only option available is `idAttribute`
+which can be used to override default record id (_id) property:
+
+```js
+var todoStore = depot("todos", { idAttribute: 'id' });
+```
+
+###Contributors
+
+* [@mkuklis](http://github.com/mkuklis)
+* [@scttnlsn](http://github.com/scttnlsn)
+
+
+###License
 <pre>
 The MIT License
 </pre>
