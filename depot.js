@@ -22,8 +22,8 @@
   var api = {
 
     save: function (record) {
-      if (!record.id) {
-        record.id = guid();
+      if (!record[this.idAttribute]) {
+        record[this.idAttribute] = guid();
       }
 
       if (this.ids.indexOf(record.id) < 0) {
@@ -31,7 +31,7 @@
         localStorage.setItem(this.name, this.ids.join(","));
       }
 
-      localStorage.setItem(getKey(this.name, record.id), JSON.stringify(record));
+      localStorage.setItem(getKey(this.name, record[this.idAttribute]), JSON.stringify(record));
 
       return record;
     },
@@ -91,7 +91,7 @@
 
     destroy: function (record) {
       var index;
-      var id = (record.id) ? record.id : record;
+      var id = (record[this.idAttribute]) ? record[this.idAttribute] : record;
 
       localStorage.removeItem(getKey(this.name, id));
 
@@ -142,18 +142,20 @@
     return dest;
   }
 
-  function depot(name) {
+  function depot(name, options) {
     var store, ids;
 
     if (!localStorage) throw new Error("localStorage not found");
 
     store = localStorage.getItem(name);
     ids = (store && store.split(",")) || [];
+    options = options || {};
 
     return Object.create(api, { 
       name: { value: name },
       store: { value: store },
-      ids: { value: ids, writable: true }
+      ids: { value: ids, writable: true },
+      idAttribute: { value: options.idAttribute || 'id' }
     });
   }
 

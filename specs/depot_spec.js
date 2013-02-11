@@ -98,4 +98,16 @@ describe('depot', function () {
 
     expect(todos.length).to.equal(2);
   });
+
+  it("should accept configurable id attribute", function() {
+    var store = depot('todos', { idAttribute: '_id' });
+    var todo = store.save({ title: 'todo3' });
+
+    var result = store.get(todo._id);
+    expect(result).to.be.ok;
+
+    store.destroy(todo._id);
+    var todos = store.all();
+    expect(todos.length).to.equal(2);
+  });
 });
