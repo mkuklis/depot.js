@@ -48,8 +48,8 @@ describe('depot', function () {
   });
 
   it("should return record by id", function () {
-    console.log(this.todo1);
     var todo = this.store.get(this.todo1._id);
+    
     expect(todo)
       .to.have.property('title')
       .and.to.equal("todo1");
