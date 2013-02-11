@@ -35,7 +35,7 @@ Define new store:
 var todoStore = depot('todos');
 ```
 
-Add new records (_id property will be generated and attached to each new record):
+Add new records (`_id` property will be generated and attached to each new record):
 
 ```js
 todoStore.save({ title: "todo1" });
