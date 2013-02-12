@@ -7,7 +7,7 @@
 ### Description
 
 **depot.js** is a namespaced [localStorage](http://diveintohtml5.info/storage.html) wrapper with a simple API.
-There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but non 
+There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but none 
 of them had what I was looking for. depot.js should work well with CommonJS and AMD loaders. 
 If loaders are not present depot.js will attach itself to the current context (window). 
 
@@ -118,7 +118,7 @@ todoStore.destroyAll(function (record) {
 
 ###Options
 
-You can pass a second parameter to depo.js with additional options.
+You can pass a second parameter to depot.js with additional options.
 
 ```js
 var todoStore = depot("todos", options);
