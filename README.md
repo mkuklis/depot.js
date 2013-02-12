@@ -1,18 +1,18 @@
-### depot.js
+## depot.js
 
 [![build status](https://secure.travis-ci.org/mkuklis/depot.js.png)](http://travis-ci.org/mkuklis/depot.js)
 
 ![depot.js](http://oi45.tinypic.com/xoiq7l.jpg)
 
 
-### Description
+## Description
 
 **depot.js** is a namespaced [localStorage](http://diveintohtml5.info/storage.html) wrapper with a simple API.
 There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but none 
 of them had what I was looking for. 
 
 
-### Installation
+## Installation
 
 depot.js should work well with CommonJS and AMD loaders. 
 If loaders are not present depot.js will attach itself to the current context (window). 
@@ -32,13 +32,13 @@ or if you already have a bower based project you can add depot.js to your depend
 ```
 
 
-### Dependencies
+## Dependencies
 
 depot.js does not depend on any other libraries however if you plan to support older browsers you will need to include [ES5-shim](https://github.com/kriskowal/es5-shim). 
 
 If you plan to run it on browsers that don't support [localStorage](http://diveintohtml5.info/storage.html) you may try to include [storage polyfill](https://gist.github.com/remy/350433).
 
-### API
+## API
 
 + save(record)
 
@@ -54,7 +54,7 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 
 + get(id)
 
-###Usage
+##Usage
 
 ####Define new store
 
@@ -143,7 +143,7 @@ todoStore.destroyAll(function (record) {
 });
 ```
 
-###Options
+##Options
 
 You can pass a second parameter to depot.js with additional options.
 
@@ -158,13 +158,13 @@ which can be used to override default record id (_id) property:
 var todoStore = depot("todos", { idAttribute: 'id' });
 ```
 
-###Contributors:
+##Contributors:
 
 * [@mkuklis](http://github.com/mkuklis)
 * [@scttnlsn](http://github.com/scttnlsn)
 * [@chrispitt](http://github.com/chrispitt)
 
-###License:
+##License:
 <pre>
 The MIT License
 </pre>
