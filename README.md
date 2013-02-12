@@ -135,7 +135,7 @@ var todoStore = depot("todos", { idAttribute: 'id' });
 
 * [@mkuklis](http://github.com/mkuklis)
 * [@scttnlsn](http://github.com/scttnlsn)
-
+* [@chrispitt](http://github.com/chrispitt)
 
 ###License:
 <pre>
