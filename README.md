@@ -15,27 +15,29 @@ If loaders are not present depot.js will attach itself to the current context (w
 
 + save(record)
 
-+ updateAll(data)
++ updateAll(hash)
 
-+ find(hash)
++ find(object | function)
 
 + all()
 
-+ destroy(record or id)
++ destroy(id | hash)
 
-+ destroyAll() 
++ destroyAll(none | hash | function) 
 
 + get(id)
 
-###Example Usage
+###Usage
 
-Define new store:
+####Define new store
 
 ```js
 var todoStore = depot('todos');
 ```
 
-Add new records (`_id` property will be generated and attached to each new record):
+####Add new records
+
+`_id` property will be generated and attached to each new record:
 
 ```js
 todoStore.save({ title: "todo1" });
@@ -43,43 +45,75 @@ todoStore.save({ title: "todo2", completed: true });
 todoStore.save({ title: "todo3", completed: true });
 ```
 
-Update all records: 
+####Update all records
 
 ```js
 todoStore.updateAll({ completed: false });
 ```
 
-Return all records:
+####Return all records
 
 ```js
 todoStore.all(); // [{ id: 1, title "todo1" }, {id: 2, title: todo2 }]
 ```
 
-Find records for given criteria:
+####Find records 
+
+* find based on given criteria
 
 ```js
 todoStore.find({ completed: true }); // [{ id: 2, title: "todo2" }, { id: 3, title: "todo3" }]
 ```
 
-Return single record by id:
+* find based on given function
+
+```js
+todoStore.find(function (record) {
+  return record.completed && record.title == "todo3";
+}); // [{ id: 3, title: "todo3" }]
+```
+
+
+####Return single record by id
 
 ```js
 todoStore.get(1); // { id: 1, title: "todo1" }
 ```
 
-Destroy single record:
+####Destroy single record:
+
+* by record id
+ 
+```js
+todoStore.destroy(1);
+```
+
+* by record object
 
 ```js
-// by id
-todoStore.destroy(1);
-// or by record
 todoStore.destroy(todo);
 ```
 
-Destroy all records:
+####Destroy all records
+
+* destroy all
 
 ```js
 todoStore.destroyAll();
+```
+
+* destroy by given criteria
+
+```js
+todoStore.destroyAll({ completed: true });
+```
+
+* destroy by given function
+
+```js
+todoStore.destroyAll(function (record) {
+  return record.completed && record.title == "todo3"; 
+});
 ```
 
 ###Options
@@ -97,13 +131,13 @@ which can be used to override default record id (_id) property:
 var todoStore = depot("todos", { idAttribute: 'id' });
 ```
 
-###Contributors
+###Contributors:
 
 * [@mkuklis](http://github.com/mkuklis)
 * [@scttnlsn](http://github.com/scttnlsn)
 
 
-###License
+###License:
 <pre>
 The MIT License
 </pre>

@@ -14,7 +14,7 @@
     root[name] = factory();
   }
 }("depot", this, function () {
-  
+
   "use strict";
 
   // depot api
@@ -47,28 +47,22 @@
         record = extend(record, data);
         this.save(record);
       }, this);
+
+      return records;
     },
 
-    find: function (query) {
+    find: function (criteria) {
       var key, match, record;
       var name = this.name;
 
+      if (!criteria) return this.all();
+
       return this.ids.reduce(function (memo, id) {
-        record = localStorage.getItem(getKey(name, id));
+        record = jsonData(localStorage.getItem(getKey(name, id)));
+        match = findMatch(criteria, record);
 
-        if (record) {
-          record = jsonData(record);
-          match = true;
-
-          if (query) {
-            for (key in query) {
-              match &= (query[key] == record[key]);
-            }
-          }
-
-          if (match) {
-            memo.push(record);
-          }
+        if (match) {
+          memo.push(record);
         }
 
         return memo;
@@ -96,8 +90,10 @@
     destroy: function (record) {
       var index;
       var id = (record[this.idAttribute]) ? record[this.idAttribute] : record;
+      var key = getKey(this.name, id);
 
-      localStorage.removeItem(getKey(this.name, id));
+      record = jsonData(localStorage.getItem(key));
+      localStorage.removeItem(key);
 
       index = this.ids.indexOf(id);
       if (index != -1) this.ids.splice(index, 1); 
@@ -106,24 +102,63 @@
       return record;
     },
 
-    destroyAll: function () {
-      this.ids.forEach(function (id) {
-        localStorage.removeItem(getKey(this.name, id));
-      }, this);
+    destroyAll: function (criteria) {
+      var attr, id, match, record, key;
 
-      localStorage.removeItem(this.name);
-      this.ids = [];
+      for (var i = this.ids.length - 1; i >= 0; i--) {
+        id = this.ids[i];
+        key = getKey(this.name, id);
+
+        if (criteria) {
+
+          record = jsonData(localStorage.getItem(key));
+          match = findMatch(criteria, record);
+
+          if (match) {
+            localStorage.removeItem(key);
+            this.ids.splice(i, 1);
+          }
+
+        }
+        else {
+          localStorage.removeItem(key);
+        }
+      }
+
+      if (criteria) {
+        localStorage.setItem(this.name, this.ids.join(","));
+      }
+      else {
+        localStorage.removeItem(this.name);
+        this.ids = [];
+      }
     }
   };
 
   // helpers
-  
+
   function jsonData(data) {
     return data && JSON.parse(data);
   }
 
   function getKey(name, id) {
     return name + "-" + id;
+  }
+
+  function findMatch(criteria, record) {
+    var match, attr;
+
+    if (typeof criteria == 'function') {
+      match = criteria(record);
+    }
+    else {
+      match = true;
+      for (attr in criteria) {
+        match &= (criteria[attr] === record[attr]);
+      }
+    }
+
+    return match;
   }
 
   function s4() {
