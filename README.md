@@ -118,7 +118,7 @@ todoStore.destroyAll(function (record) {
 
 ###Options
 
-You can pass a second parameter to depo.js with additional options.
+You can pass a second parameter to depot.js with additional options.
 
 ```js
 var todoStore = depot("todos", options);
