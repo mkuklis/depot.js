@@ -44,11 +44,11 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 
 + updateAll(hash)
 
-+ find(object | function)
++ find(hash | function)
 
 + all()
 
-+ destroy(id | hash)
++ destroy(id | record)
 
 + destroyAll(none | hash | function) 
 
@@ -107,7 +107,7 @@ todoStore.find(function (record) {
 todoStore.get(1); // { id: 1, title: "todo1" }
 ```
 
-####Destroy single record:
+####Destroy single record
 
 * by record id
  
