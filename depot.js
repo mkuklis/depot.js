@@ -1,10 +1,9 @@
-/* ----------------------------------
- * depot.js v0.1.0
- * Licensed under The MIT License
- * http://opensource.org/licenses/MIT
- * ---------------------------------- */
+// depot.js v0.1.2
 
-// commonjs, amd, global
+// (c) 2013 Michal Kuklis
+// Licensed under The MIT License
+// http://opensource.org/licenses/MIT
+
 (function (name, root, factory) {
   if (typeof exports === 'object') {
     module.exports = factory();
@@ -30,7 +29,10 @@
 
       id = record[this.idAttribute];
 
-      if (this.ids.indexOf(id) < 0) {
+      if (this.ids.indexOf(id) >= 0) {
+        record = extend(this.get(id), record);
+      }
+      else {
         this.ids.push(id);
         localStorage.setItem(this.name, this.ids.join(","));
       }
