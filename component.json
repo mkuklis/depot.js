@@ -2,7 +2,7 @@
   "name": "depot",
   "description": "depot.js is a namespaced localStorage wrapper with a simple API.",
   "main": "depot.js",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "dependencies": {
     "es5-shim": "git://github.com/kriskowal/es5-shim.git#2.0.0"
   }
