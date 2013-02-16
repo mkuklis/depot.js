@@ -146,7 +146,7 @@ describe('depot', function () {
       expect(todos.length).to.equal(2);
     });
   });
-  
+
   describe("#find", function () {
     it("should find records for given hash criteria", function () {
       this.store.save({ title: 'todo3', completed: true });
@@ -167,6 +167,12 @@ describe('depot', function () {
 
       expect(todos.length).to.equal(1);
       expect(todos[0]).to.eql(todo3);
+    });
+  });
+
+  describe("#size", function () {
+    it("should return the number of items", function () {
+      expect(this.store.size()).to.equal(2);
     });
   });
 });

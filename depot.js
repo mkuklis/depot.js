@@ -72,7 +72,7 @@
     },
 
     get: function (id) {
-      return jsonData(localStorage.getItem(getKey(this.name, id))); 
+      return jsonData(localStorage.getItem(getKey(this.name, id)));
     },
 
     all: function () {
@@ -98,7 +98,7 @@
       localStorage.removeItem(key);
 
       index = this.ids.indexOf(id);
-      if (index != -1) this.ids.splice(index, 1); 
+      if (index != -1) this.ids.splice(index, 1);
       localStorage.setItem(this.name, this.ids.join(","));
 
       return record;
@@ -134,6 +134,10 @@
         localStorage.removeItem(this.name);
         this.ids = [];
       }
+    },
+
+    size: function () {
+      return this.ids.length;
     }
   };
 
@@ -169,7 +173,7 @@
   }
 
   function guid() {
-    return s4() + s4() + '-' + s4() + '-' + s4() + 
+    return s4() + s4() + '-' + s4() + '-' + s4() +
       '-' +s4() + '-' + s4() + s4() + s4();
   }
 
@@ -192,7 +196,7 @@
     ids = (store && store.split(",")) || [];
     options = options || {};
 
-    return Object.create(api, { 
+    return Object.create(api, {
       name: { value: name },
       store: { value: store },
       ids: { value: ids, writable: true },
