@@ -46,6 +46,26 @@ describe('depot', function () {
     });
   });
 
+  describe("#update", function() {
+    it("should update existing record", function() {
+      this.store.update({ _id: this.todo1._id, completed: true });
+      var todo = this.store.get(this.todo1._id);
+
+      expect(todo)
+        .to.have.property('completed')
+        .and.to.equal(true);
+    });
+
+    it("should update existing record by id", function() {
+      this.store.update(this.todo1._id, { completed: true });
+      var todo = this.store.get(this.todo1._id);
+      
+      expect(todo)
+        .to.have.property('completed')
+        .and.to.equal(true);
+    });
+  });
+
   describe("#updateAll", function () {
     it("should update existing records", function () {
       this.store.updateAll({ completed: true });
