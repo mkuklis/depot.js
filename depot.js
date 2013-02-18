@@ -39,6 +39,22 @@
       return record;
     },
 
+    update: function(id, data) {
+      if (typeof data == 'undefined') {
+        data = id;
+        id = data[this.idAttribute];
+      }
+      
+      var record = this.get(id);
+
+      if (record) {
+        record = extend(record, data);
+        this.save(record);
+      }
+
+      return record;
+    },
+
     updateAll: function (data) {
       var records = this.all();
 
