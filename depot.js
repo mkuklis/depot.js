@@ -1,4 +1,4 @@
-// depot.js v0.1.2
+// depot.js v0.1.3
 
 // (c) 2013 Michal Kuklis
 // Licensed under The MIT License
@@ -29,10 +29,7 @@
 
       id = record[this.idAttribute];
 
-      if (this.ids.indexOf(id) >= 0) {
-        record = extend(this.get(id), record);
-      }
-      else {
+      if (this.ids.indexOf(id) < 0) {
         this.ids.push(id);
         localStorage.setItem(this.name, this.ids.join(","));
       }
