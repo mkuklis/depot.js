@@ -1,13 +1,13 @@
-// depot.js v0.1.3
+// depot.js v0.1.4
 
 // (c) 2013 Michal Kuklis
 // Licensed under The MIT License
 // http://opensource.org/licenses/MIT
 
 (function (name, root, factory) {
-  if (typeof exports === 'object') {
+  if (typeof exports == 'object') {
     module.exports = factory();
-  } else if (typeof define === 'function' && define.amd) {
+  } else if (typeof define == 'function' && define.amd) {
     define(factory);
   } else {
     root[name] = factory();
@@ -44,7 +44,7 @@
         data = id;
         id = data[this.idAttribute];
       }
-      
+
       var record = this.get(id);
 
       if (record) {

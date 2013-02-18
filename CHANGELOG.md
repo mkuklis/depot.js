@@ -1,3 +1,7 @@
+0.1.4 / 2013-02-18
+==================
+* Feature: Added `update` call (@scttnlsn)
+
 0.1.3 / 2013-02-17
 ==================
 * Feature: Added size

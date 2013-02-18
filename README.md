@@ -44,6 +44,8 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 
 + updateAll(hash)
 
++ update(hash)
+
 + find(hash | function)
 
 + all()
