@@ -39,7 +39,7 @@
       return record;
     },
 
-    update: function(id, data) {
+    update: function (id, data) {
       if (typeof data == 'undefined') {
         data = id;
         id = data[this.idAttribute];
