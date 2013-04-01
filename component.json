@@ -3,6 +3,12 @@
   "description": "depot.js is a namespaced localStorage wrapper with a simple API.",
   "main": "depot.js",
   "version": "0.1.4",
+  "ignore": [
+    "CHANGELOG.md",
+    ".gitignore",
+    ".travis.yml",
+    "specs"
+  ],
   "dependencies": {
     "es5-shim": "git://github.com/kriskowal/es5-shim.git#2.0.0"
   }
