@@ -21,6 +21,35 @@ describe('depot', function () {
     var todos = store.all();
     expect(todos.length).to.equal(2);
   });
+  
+  it('should support sessionStorage', function() {
+    var store = depot('todos', { storageType: sessionStorage });
+    var todo = store.save({ title: 'todo3' }); 
+
+    var result = store.get(todo._id);
+    expect(result.title).to.equal('todo3');
+    expect(result).to.be.ok;
+  });
+
+  it('should support a simple object for storage', function() {
+    var storeObj = {
+      store: {},
+      setItem: function(key, value) {
+        this.store[key] = value;
+      },
+      getItem: function(key) {
+        return this.store[key];
+      },
+      removeItem: function(key) {
+        delete this.store[key];
+      }
+    };
+
+    var store = depot('todos', { storageType: storeObj });
+    var todo = store.save({ title: 'todo3' });
+    var result = store.get(todo._id);
+    expect(result.title).to.equal('todo3');
+  });
 
   describe("#save", function () {
     it("should save new records", function () {
