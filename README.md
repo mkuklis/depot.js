@@ -163,10 +163,10 @@ var todoStore = depot("todos", options);
 var todoStore = depot("todos", { idAttribute: 'id' });
 ```
 
-+ storageType - used to override storage type (default: `localStorage`)
++ storageAdaptor - used to override storage type (default: `localStorage`)
 
 ```js
-var todoStore = depot('todos', { storageType: sessionStorage });
+var todoStore = depot('todos', { storageAdaptor: sessionStorage });
 ```
 
 
