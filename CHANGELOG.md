@@ -1,3 +1,7 @@
+0.1.5 / 2013-04-30
+==================
+* Feature: Added support for different types of storage adaptors (@simonsmith)
+
 0.1.4 / 2013-02-18
 ==================
 * Feature: Added `update` call (@scttnlsn)

@@ -2,7 +2,7 @@
   "name": "depot",
   "description": "depot.js is a namespaced localStorage wrapper with a simple API.",
   "main": "depot.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "ignore": [
     "CHANGELOG.md",
     ".gitignore",

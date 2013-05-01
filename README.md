@@ -155,18 +155,27 @@ You can pass a second parameter to depot.js with additional options.
 var todoStore = depot("todos", options);
 ```
 
-Currently the only option available is `idAttribute`
-which can be used to override default record id (_id) property:
+### Available options:
+
++ idAttribute - used to override record id property (default: `_id`)
 
 ```js
 var todoStore = depot("todos", { idAttribute: 'id' });
 ```
+
++ storageType - used to override storage type (default: `localStorage`)
+
+```js
+var todoStore = depot('todos', { storageType: sessionStorage });
+```
+
 
 ##Contributors:
 
 * [@mkuklis](http://github.com/mkuklis)
 * [@scttnlsn](http://github.com/scttnlsn)
 * [@chrispitt](http://github.com/chrispitt)
+* [@simonsmith](http://github.com/simonsmith)
 
 ##License:
 <pre>

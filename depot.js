@@ -1,4 +1,4 @@
-// depot.js v0.1.4
+// depot.js v0.1.5
 
 // (c) 2013 Michal Kuklis
 // Licensed under The MIT License
