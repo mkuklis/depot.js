@@ -176,6 +176,7 @@ var todoStore = depot('todos', { storageAdaptor: sessionStorage });
 * [@scttnlsn](http://github.com/scttnlsn)
 * [@chrispitt](http://github.com/chrispitt)
 * [@simonsmith](http://github.com/simonsmith)
+* [@mdlawson](http://github.com/mdlawson)
 
 ##License:
 <pre>

@@ -4,7 +4,7 @@
     "name": "Michal Kuklis",
     "email": "michal.kuklis@gmail.com"
   },
-  "version": "0.1.5",
+  "version": "0.1.6",
   "analyze": false,
   "devDependencies": {
     "mocha-phantomjs": "latest"

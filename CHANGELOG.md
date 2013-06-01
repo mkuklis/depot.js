@@ -1,3 +1,7 @@
+0.1.6 / 2013-05-31
+==================
+* Bug: Fixed issue with integer keys causing data duplication (@mdlawson)
+
 0.1.5 / 2013-04-30
 ==================
 * Feature: Added support for different types of storage adaptors (@simonsmith)
