@@ -11,22 +11,22 @@ describe('depot', function () {
   });
 
   it("should accept configurable id attribute", function () {
-    var store = depot('todos', { idAttribute: 'id' });
-    var todo = store.save({ title: 'todo3' });
+    this.store = depot('todos', { idAttribute: 'id' });
+    var todo = this.store.save({ title: 'todo3' });
 
-    var result = store.get(todo.id);
+    var result = this.store.get(todo.id);
     expect(result).to.be.ok;
 
-    store.destroy(todo.id);
-    var todos = store.all();
+    this.store.destroy(todo.id);
+    var todos = this.store.all();
     expect(todos.length).to.equal(2);
   });
-  
-  it('should support sessionStorage', function() {
-    var store = depot('todos', { storageType: sessionStorage });
-    var todo = store.save({ title: 'todo3' }); 
 
-    var result = store.get(todo._id);
+  it('should support sessionStorage', function() {
+    this.store = depot('todos', { storageType: sessionStorage });
+    var todo = this.store.save({ title: 'todo3' });
+
+    var result = this.store.get(todo._id);
     expect(result.title).to.equal('todo3');
     expect(result).to.be.ok;
   });
@@ -45,9 +45,9 @@ describe('depot', function () {
       }
     };
 
-    var store = depot('todos', { storageType: storeObj });
-    var todo = store.save({ title: 'todo3' });
-    var result = store.get(todo._id);
+    this.store = depot('todos', { storageType: storeObj });
+    var todo = this.store.save({ title: 'todo3' });
+    var result = this.store.get(todo._id);
     expect(result.title).to.equal('todo3');
   });
 

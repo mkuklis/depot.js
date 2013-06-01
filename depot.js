@@ -27,7 +27,7 @@
         record[this.idAttribute] = guid();
       }
 
-      id = record[this.idAttribute];
+      id = record[this.idAttribute] + '';
 
       if (this.ids.indexOf(id) < 0) {
         this.ids.push(id);
@@ -219,7 +219,7 @@
       store: { value: store },
       ids: { value: ids, writable: true },
       idAttribute: { value: options.idAttribute },
-      storageAdaptor: {value: options.storageAdaptor }
+      storageAdaptor: { value: options.storageAdaptor }
     });
   }
 
