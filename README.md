@@ -12,10 +12,10 @@ There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcusw
 of them had what I was looking for.
 
 
-## Installation
+## Setup
 
 depot.js should work well with CommonJS and AMD loaders.
-If loaders are not present depot.js will attach itself to the current context (window).
+If loaders are not present depot.js will attach itself to the current context (window) when loaded via `<script src="depot.min.js"></script>`.
 
 depot.js is also a [bower](https://github.com/twitter/bower) [component](http://sindresorhus.com/bower-components/) so you should be able to install it by running:
 
