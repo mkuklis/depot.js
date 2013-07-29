@@ -21,9 +21,9 @@
   var api = {
 
     save: function (record) {
-      this.refresh();
-
       var id, ids;
+
+      this.refresh();
 
       if (!record[this.idAttribute]) {
         record[this.idAttribute] = guid();
@@ -96,9 +96,9 @@
     },
 
     all: function () {
-      this.refresh();
-
       var record, self = this, name = this.name;
+
+      this.refresh();
 
       return this.ids.reduce(function (memo, id) {
         record = self.storageAdaptor.getItem(getKey(name, id));
