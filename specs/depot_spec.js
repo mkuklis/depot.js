@@ -4,6 +4,8 @@ describe('depot', function () {
     this.store = depot('todos');
     this.todo1 = this.store.save({ title: 'todo1' });
     this.todo2 = this.store.save({ title: 'todo2' });
+
+    this.store2 = depot('todos');
   });
 
   afterEach(function () {
@@ -72,6 +74,17 @@ describe('depot', function () {
       expect(todos[0])
         .to.have.property('completed')
         .and.to.equal(true);
+    });
+
+    it("should be safe to use across multiple instances", function () {
+      this.store.save({ title: 'todo3' });
+
+      var todos2 = this.store2.all();
+
+      expect(todos2.length).to.equal(3);
+      expect(todos2[2])
+        .to.have.property('title')
+        .and.to.equal("todo3");
     });
   });
 
@@ -217,11 +230,28 @@ describe('depot', function () {
       expect(todos.length).to.equal(1);
       expect(todos[0]).to.eql(todo3);
     });
+
+    it("should find records saved in other instances", function () {
+      var todo3 = this.store.save({ title: 'todo3', completed: true });
+      this.store.save({ title: 'todo4', completed: true });
+
+      var todos2 = this.store2.find(function (record) {
+        return record.completed && record.title == "todo3";
+      });
+
+      expect(todos2.length).to.equal(1);
+      expect(todos2[0]).to.eql(todo3);
+    });
   });
 
   describe("#size", function () {
     it("should return the number of items", function () {
       expect(this.store.size()).to.equal(2);
+    });
+
+    it("should be reliable across multiple instances", function () {
+      this.store.save({ title: 'todo3' });
+      expect(this.store2.size()).to.equal(3);
     });
   });
 });
