@@ -234,11 +234,23 @@
 
     if (!options.storageAdaptor) throw new Error("No storage adaptor was found");
 
-    instance = Object.create(api, {
-      name: { value: name },
-      idAttribute: { value: options.idAttribute },
-      storageAdaptor: { value: options.storageAdaptor }
-    });
+    if (Object.create) {
+      instance = Object.create(api, {
+        name: { value: name },
+        idAttribute: { value: options.idAttribute },
+        storageAdaptor: { value: options.storageAdaptor }
+      });      
+    } else {
+      instance = (function () {
+        var f = function(){};
+        f.prototype = api;
+        var d = new f();
+        d.name = name;
+        d.idAttribute = options.idAttribute;
+        d.storageAdaptor = options.storageAdaptor;
+        return d;
+      }());
+    }
 
     instance.refresh();
 
