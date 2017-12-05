@@ -11,7 +11,7 @@
     "release": "browserify -t babelify ./lib/index.js -o ./dist/depot.js"
   },
   "analyze": false,
-  "main": "depot.js",
+  "main": "/lib/index.js",
   "devDependencies": {
     "babel-core": "^6.3.26",
     "babel-plugin-syntax-async-functions": "^6.3.13",

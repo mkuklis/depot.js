@@ -17,21 +17,6 @@ of them had what I was looking for.
 depot.js should work well with CommonJS and AMD loaders.
 If loaders are not present depot.js will attach itself to the current context (window) when loaded via `<script src="depot.min.js"></script>`.
 
-depot.js is also a [bower](https://github.com/twitter/bower) [component](http://sindresorhus.com/bower-components/) so you should be able to install it by running:
-
-`bower install depot`
-
-or if you already have a bower based project you can add depot.js to your dependency list in `component.json`
-
-```js
- "dependencies": {
-    ...
-    "depot": "0.x.x"
-    ...
-  }
-```
-
-
 ## Dependencies
 
 depot.js does not depend on any other libraries however if you plan to support older browsers you will need to include [ES5-shim](https://github.com/kriskowal/es5-shim).
@@ -63,7 +48,7 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 ####Define new store
 
 ```js
-var todoStore = depot('todos');
+const todoStore = depot('todos');
 ```
 
 ####Add new records
@@ -99,9 +84,9 @@ todoStore.find({ completed: true }); // [{ id: 2, title: "todo2" }, { id: 3, tit
 * find based on given function
 
 ```js
-todoStore.find(function (record) {
-  return record.completed && record.title == "todo3";
-}); // [{ id: 3, title: "todo3" }]
+todoStore.find(record =>
+ record.completed && record.title == "todo3"
+); // [{ id: 3, title: "todo3" }]
 ```
 
 
@@ -142,9 +127,9 @@ todoStore.destroyAll({ completed: true });
 * destroy by given function
 
 ```js
-todoStore.destroyAll(function (record) {
-  return record.completed && record.title == "todo3";
-});
+todoStore.destroyAll(record =>
+  record.completed && record.title === "todo3"
+);
 ```
 
 ##Options
@@ -152,7 +137,7 @@ todoStore.destroyAll(function (record) {
 You can pass a second parameter to depot.js with additional options.
 
 ```js
-var todoStore = depot("todos", options);
+const todoStore = depot("todos", options);
 ```
 
 ### Available options:
@@ -160,13 +145,13 @@ var todoStore = depot("todos", options);
 + idAttribute - used to override record id property (default: `_id`)
 
 ```js
-var todoStore = depot("todos", { idAttribute: 'id' });
+const todoStore = depot("todos", { idAttribute: 'id' });
 ```
 
 + storageAdaptor - used to override storage type (default: `localStorage`)
 
 ```js
-var todoStore = depot('todos', { storageAdaptor: sessionStorage });
+const todoStore = depot('todos', { storageAdaptor: sessionStorage });
 ```
 
 
