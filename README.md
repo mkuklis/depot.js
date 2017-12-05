@@ -84,9 +84,7 @@ todoStore.find({ completed: true }); // [{ id: 2, title: "todo2" }, { id: 3, tit
 * find based on given function
 
 ```js
-todoStore.find(record =>
- record.completed && record.title == "todo3"
-); // [{ id: 3, title: "todo3" }]
+todoStore.find(record => record.completed && record.title == "todo3"); // [{ id: 3, title: "todo3" }]
 ```
 
 
@@ -127,9 +125,7 @@ todoStore.destroyAll({ completed: true });
 * destroy by given function
 
 ```js
-todoStore.destroyAll(record =>
-  record.completed && record.title === "todo3"
-);
+todoStore.destroyAll(record => record.completed && record.title === "todo3");
 ```
 
 ##Options

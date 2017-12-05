@@ -181,12 +181,12 @@ describe('depot', () => {
       this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
-      const todos = this.store.all();
+      let todos = this.store.all();
       expect(todos.length).to.equal(4);
 
       this.store.destroyAll({ completed: true });
 
-      const todos = this.store.all();
+      todos = this.store.all();
       expect(todos.length).to.equal(2);
     });
 
@@ -194,14 +194,14 @@ describe('depot', () => {
       this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
-      const todos = this.store.all();
+      let todos = this.store.all();
       expect(todos.length).to.equal(4);
 
       this.store.destroyAll(record =>
-        record.completed && record.title == "todo3";
+        record.completed && record.title == "todo3"
       );
 
-      const todos = this.store.all();
+      todos = this.store.all();
       expect(todos.length).to.equal(3);
     });
   });
