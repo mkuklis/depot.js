@@ -14,8 +14,13 @@ of them had what I was looking for.
 
 ## Setup
 
-depot.js should work well with CommonJS and AMD loaders.
-If loaders are not present depot.js will attach itself to the current context (window) when loaded via `<script src="depot.min.js"></script>`.
+You can install depot.js via npm:
+
+```js
+  npm install depotjs --save
+```
+
+or load it directly via `<script src="depot.js"></script>`. The `dist` folder contains the most recent minified version.
 
 ## Dependencies
 
@@ -46,6 +51,12 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 + size()
 
 ## Usage
+
+#### Import depot
+
+```js
+import depot from 'depotjs';
+```
 
 #### Define new store
 
