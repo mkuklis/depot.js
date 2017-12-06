@@ -27,6 +27,8 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 
 + save(record)
 
++ saveAll(array)
+
 + updateAll(hash)
 
 + update(hash)
@@ -53,7 +55,7 @@ const todoStore = depot('todos');
 
 #### Add new records
 
-`_id` property will be generated and attached to each new record:
+`_id` property will be generated as GUID and attached to each new record:
 
 ```js
 todoStore.save({ title: "todo1" });
@@ -70,7 +72,7 @@ todoStore.updateAll({ completed: false });
 #### Return all records
 
 ```js
-todoStore.all(); // [{ id: 1, title "todo1" }, {id: 2, title: todo2 }]
+todoStore.all(); // [{ _id: 1, title "todo1" }, { _id: 2, title: todo2 }]
 ```
 
 #### Find records
@@ -78,20 +80,20 @@ todoStore.all(); // [{ id: 1, title "todo1" }, {id: 2, title: todo2 }]
 * find based on given criteria
 
 ```js
-todoStore.find({ completed: true }); // [{ id: 2, title: "todo2" }, { id: 3, title: "todo3" }]
+todoStore.find({ completed: true }); // [{ _id: 2, title: "todo2" }, { _id: 3, title: "todo3" }]
 ```
 
 * find based on given function
 
 ```js
-todoStore.find(record => record.completed && record.title == "todo3"); // [{ id: 3, title: "todo3" }]
+todoStore.find(record => record.completed && record.title == "todo3"); // [{ _id: 3, title: "todo3" }]
 ```
 
 
 #### Return single record by id
 
 ```js
-todoStore.get(1); // { id: 1, title: "todo1" }
+todoStore.get(1); // { _id: 1, title: "todo1" }
 ```
 
 #### Destroy single record
