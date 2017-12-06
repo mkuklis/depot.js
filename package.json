@@ -10,7 +10,7 @@
     "release": "rollup --config"
   },
   "analyze": false,
-  "main": "/dist/depot.js",
+  "main": "./dist/depot.js",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
