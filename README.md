@@ -43,15 +43,15 @@ If you plan to run it on browsers that don't support [localStorage](http://divei
 
 + size()
 
-##Usage
+## Usage
 
-####Define new store
+#### Define new store
 
 ```js
 const todoStore = depot('todos');
 ```
 
-####Add new records
+#### Add new records
 
 `_id` property will be generated and attached to each new record:
 
@@ -61,19 +61,19 @@ todoStore.save({ title: "todo2", completed: true });
 todoStore.save({ title: "todo3", completed: true });
 ```
 
-####Update all records
+#### Update all records
 
 ```js
 todoStore.updateAll({ completed: false });
 ```
 
-####Return all records
+#### Return all records
 
 ```js
 todoStore.all(); // [{ id: 1, title "todo1" }, {id: 2, title: todo2 }]
 ```
 
-####Find records
+#### Find records
 
 * find based on given criteria
 
@@ -88,13 +88,13 @@ todoStore.find(record => record.completed && record.title == "todo3"); // [{ id:
 ```
 
 
-####Return single record by id
+#### Return single record by id
 
 ```js
 todoStore.get(1); // { id: 1, title: "todo1" }
 ```
 
-####Destroy single record
+#### Destroy single record
 
 * by record id
 
@@ -108,7 +108,7 @@ todoStore.destroy(1);
 todoStore.destroy(todo);
 ```
 
-####Destroy all records
+#### Destroy all records
 
 * destroy all
 
@@ -128,7 +128,7 @@ todoStore.destroyAll({ completed: true });
 todoStore.destroyAll(record => record.completed && record.title === "todo3");
 ```
 
-##Options
+## Options
 
 You can pass a second parameter to depot.js with additional options.
 
@@ -151,7 +151,7 @@ const todoStore = depot('todos', { storageAdaptor: sessionStorage });
 ```
 
 
-##Contributors:
+## Contributors:
 
 * [@mkuklis](http://github.com/mkuklis)
 * [@scttnlsn](http://github.com/scttnlsn)
@@ -160,7 +160,7 @@ const todoStore = depot('todos', { storageAdaptor: sessionStorage });
 * [@mdlawson](http://github.com/mdlawson)
 * [@jdbartlett](http://github.com/jdbartlett)
 
-##License:
+## License:
 <pre>
 The MIT License
 </pre>
