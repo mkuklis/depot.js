@@ -1,21 +1,23 @@
-import depot from '../../lib/index';
+import "babel-polyfill";
+
+import depot from '../../src/index';
 import { expect } from 'chai';
 
-describe('depot', () => {
+describe('depot', function () {
 
-  beforeEach(() => {
+  beforeEach(function () {
     this.store = depot('todos');
     this.todo1 = this.store.save({ title: 'todo1' });
     this.todo2 = this.store.save({ title: 'todo2' });
     this.store2 = depot('todos');
   });
 
-  afterEach(() => {
+  afterEach(function () {
     this.store.destroyAll();
     this.store2.destroyAll();
   });
 
-  it("should accept configurable id attribute", () => {
+  it("should accept configurable id attribute", function () {
     this.store = depot('todos', { idAttribute: 'id' });
     const todo = this.store.save({ title: 'todo3' });
 
@@ -27,7 +29,7 @@ describe('depot', () => {
     expect(todos.length).to.equal(2);
   });
 
-  it('should support sessionStorage', () => {
+  it('should support sessionStorage', function () {
     this.store = depot('todos');
     const todo = this.store.save({ title: 'todo3' });
 
@@ -36,7 +38,7 @@ describe('depot', () => {
     expect(result).to.be.ok;
   });
 
-  it('should support a simple object for storage', () => {
+  it('should support a simple object for storage', function () {
     const storeObj = {
       store: {},
       setItem: (key, value) => {
@@ -56,8 +58,8 @@ describe('depot', () => {
     expect(result.title).to.equal('todo3');
   });
 
-  describe("#save", () => {
-    it("should save new records", () => {
+  describe("#save", function () {
+    it("should save new records", function () {
       this.store.save({ title: 'todo3' });
       this.store.save({ title: 'todo4' });
 
@@ -69,7 +71,7 @@ describe('depot', () => {
         .and.to.equal("todo3");
     });
 
-    it("should update single record", () => {
+    it("should update single record", function () {
       this.todo1.completed = true;
       this.store.save(this.todo1);
 
@@ -80,7 +82,7 @@ describe('depot', () => {
         .and.to.equal(true);
     });
 
-    it("should be safe to use across multiple instances", () => {
+    it("should be safe to use across multiple instances", function () {
       this.store.save({ title: 'todo3' });
 
       const todos2 = this.store2.all();
@@ -92,8 +94,8 @@ describe('depot', () => {
     });
   });
 
-  describe("#update", () => {
-    it("should update existing record", () => {
+  describe("#update", function () {
+    it("should update existing record", function () {
       this.store.update({ _id: this.todo1._id, completed: true });
       const todo = this.store.get(this.todo1._id);
 
@@ -102,7 +104,7 @@ describe('depot', () => {
         .and.to.equal(true);
     });
 
-    it("should update existing record by id", () => {
+    it("should update existing record by id", function () {
       this.store.update(this.todo1._id, { completed: true });
       const todo = this.store.get(this.todo1._id);
 
@@ -112,8 +114,8 @@ describe('depot', () => {
     });
   });
 
-  describe("#updateAll", () => {
-    it("should update existing records", () => {
+  describe("#updateAll", function () {
+    it("should update existing records", function () {
       this.store.updateAll({ completed: true });
 
       const todos = this.store.all();
@@ -128,8 +130,8 @@ describe('depot', () => {
     });
   });
 
-  describe("#get", () => {
-    it("should return record by id", () => {
+  describe("#get", function () {
+    it("should return record by id", function () {
       const todo = this.store.get(this.todo1._id);
 
       expect(todo)
@@ -138,33 +140,33 @@ describe('depot', () => {
     });
   });
 
-  describe("#destroy", () => {
-    it("should destroy single record", () => {
+  describe("#destroy", function () {
+    it("should destroy single record", function () {
       this.store.destroy(this.todo1);
       const todos = this.store.all();
       expect(todos.length).to.equal(1);
     });
 
-    it("should destroy single record by id", () => {
+    it("should destroy single record by id", function () {
       this.store.destroy(this.todo1._id);
       const todos = this.store.all();
       expect(todos.length).to.equal(1);
     });
 
-    it("should return destroyed record", () => {
+    it("should return destroyed record", function () {
       const todo = this.store.destroy(this.todo1);
       expect(todo).to.eql(this.todo1);
     });
   });
 
-  describe("#destroyAll", () => {
-    it("should destroy all records", () => {
+  describe("#destroyAll", function () {
+    it("should destroy all records", function () {
       this.store.destroyAll();
       const todos = this.store.all();
       expect(todos.length).to.equal(0);
     });
 
-    it("should only destroy todo records", () => {
+    it("should only destroy todo records", function () {
       const projectStore = depot('projects');
       projectStore.save({ name: "project1" });
 
@@ -177,7 +179,7 @@ describe('depot', () => {
       projectStore.destroyAll();
     });
 
-    it("should destroy records based on hash criteria", () => {
+    it("should destroy records based on hash criteria", function () {
       this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
@@ -190,7 +192,7 @@ describe('depot', () => {
       expect(todos.length).to.equal(2);
     });
 
-    it("should destroy records based on function", () => {
+    it("should destroy records based on function", function () {
       this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
@@ -206,15 +208,15 @@ describe('depot', () => {
     });
   });
 
-  describe("#all", () => {
-    it("should return all records", () => {
+  describe("#all", function () {
+    it("should return all records", function () {
       const todos = this.store.all();
       expect(todos.length).to.equal(2);
     });
   });
 
-  describe("#find", () => {
-    it("should find records for given hash criteria", () => {
+  describe("#find", function () {
+    it("should find records for given hash criteria", function () {
       this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
@@ -223,7 +225,7 @@ describe('depot', () => {
       expect(todos.length).to.equal(2);
     });
 
-    it("should find records for given function", () => {
+    it("should find records for given function", function () {
       const todo3 = this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
@@ -235,7 +237,7 @@ describe('depot', () => {
       expect(todos[0]).to.eql(todo3);
     });
 
-    it("should find records saved in other instances", () => {
+    it("should find records saved in other instances", function () {
       const todo3 = this.store.save({ title: 'todo3', completed: true });
       this.store.save({ title: 'todo4', completed: true });
 
@@ -247,12 +249,12 @@ describe('depot', () => {
     });
   });
 
-  describe("#size", () => {
-    it("should return the number of items", () => {
+  describe("#size", function () {
+    it("should return the number of items", function () {
       expect(this.store.size()).to.equal(2);
     });
 
-    it("should be reliable across multiple instances", () => {
+    it("should be reliable across multiple instances", function () {
       this.store.save({ title: 'todo3' });
       expect(this.store2.size()).to.equal(3);
     });
