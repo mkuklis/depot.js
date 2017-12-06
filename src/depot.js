@@ -7,6 +7,11 @@ export default class Depot {
     return this.adaptor.save(record);
   }
 
+  saveAll(records) {
+    records.forEach(record => this.adaptor.save(record));
+    return this.all();
+  }
+
   update(id, data) {
     return this.adaptor.update(id, data);
   }

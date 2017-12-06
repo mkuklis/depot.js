@@ -94,6 +94,14 @@ describe('depot', function () {
     });
   });
 
+  describe("#saveAll", function () {
+    it("should save all new records", function () {
+      this.store.destroyAll();
+      const todos = this.store.saveAll([ { title: 'todo 1' }, { title: 'todo 2'} ]);
+      expect(todos.length).to.equal(2);
+    });
+  });
+
   describe("#update", function () {
     it("should update existing record", function () {
       this.store.update({ _id: this.todo1._id, completed: true });
