@@ -4,16 +4,26 @@ import uglify from 'rollup-plugin-uglify';
 
 export default {
   input: 'src/index.js',
-  output: {
-    file: 'dist/depot.js',
-    format: 'cjs'
-  },
+  output: [
+    {
+      file: 'dist/depot.browser.js',
+      format: 'iife',
+      name: 'depot',
+    },
+    {
+      file: 'dist/depot.js',
+      format: 'cjs',
+    }
+  ],
   plugins: [
-    resolve(),
     babel({
       exclude: 'node_modules/**',
       presets: [ 'es2015-rollup' ],
       babelrc: false
+    }),
+    resolve({
+      browser: true,
+      main: true
     }),
     uglify()
   ]

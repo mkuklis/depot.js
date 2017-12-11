@@ -14,8 +14,4 @@ function depot(name, options = {}) {
 
 depot.adaptors = adaptors;
 
-if (typeof window != 'undefined') {
-  window.depot = depot;
-}
-
 export default depot;

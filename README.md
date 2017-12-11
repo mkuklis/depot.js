@@ -18,7 +18,7 @@ You can install depot.js via npm:
   npm install depotjs --save
 ```
 
-or load it directly via `<script src="depot.js"></script>`. The `dist` folder contains the most recent minified version.
+or load it directly via `<script src="depot.browser.js"></script>`. The `dist` folder contains the most recent minified browser version `depot.browser.js`.
 
 ## Dependencies
 
