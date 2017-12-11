@@ -72,7 +72,6 @@ export default class FileAdaptor extends CoreAdaptor {
     }
 
     for (let i = this.ids.length - 1; i >= 0; i--) {
-      const id = this.ids[i];
       const record = this.store[i];
       const match = util.findMatch(criteria, record);
 

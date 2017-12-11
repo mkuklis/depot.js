@@ -1,4 +1,4 @@
-import Depot from "./depot";
+import Depot from './depot';
 import * as adaptors from './adaptors';
 
 function depot(name, options = {}) {

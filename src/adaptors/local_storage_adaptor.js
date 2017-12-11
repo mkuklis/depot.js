@@ -20,7 +20,7 @@ export default class LocalStorageAdaptor extends CoreAdaptor {
 
     if (this.ids.indexOf(id) < 0) {
       this.ids.push(id);
-      const ids = this.ids.join(",");
+      const ids = this.ids.join(',');
       this.storageAdaptor.setItem(this.name, ids);
       this.store = ids;
     }
@@ -76,7 +76,7 @@ export default class LocalStorageAdaptor extends CoreAdaptor {
 
     const index = this.ids.indexOf(id + '');
     if (index != -1) this.ids.splice(index, 1);
-    this.storageAdaptor.setItem(this.name, this.ids.join(","));
+    this.storageAdaptor.setItem(this.name, this.ids.join(','));
 
     return record;
   }
@@ -104,7 +104,7 @@ export default class LocalStorageAdaptor extends CoreAdaptor {
     }
 
     if (criteria) {
-      this.storageAdaptor.setItem(this.name, this.ids.join(","));
+      this.storageAdaptor.setItem(this.name, this.ids.join(','));
     }
     else {
       this.storageAdaptor.removeItem(this.name);
@@ -120,7 +120,7 @@ export default class LocalStorageAdaptor extends CoreAdaptor {
       return;
     }
 
-    this.ids = (store && store.split(",")) || [];
+    this.ids = (store && store.split(',')) || [];
     this.store = store;
   }
 }

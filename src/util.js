@@ -12,19 +12,17 @@ function s4() {
 }
 
 function guid() {
-  return s4() + s4() + '-' + s4() + '-' + s4() +
-    '-' +s4() + '-' + s4() + s4() + s4();
+  return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
 }
 
 function findMatch(criteria, record) {
-  let match, attr;
+  let match = true;
 
   if (typeof criteria == 'function') {
     match = criteria(record);
   }
   else {
-    match = true;
-    for (attr in criteria) {
+    for (let attr in criteria) {
       match &= (criteria[attr] === record[attr]);
     }
   }
@@ -33,7 +31,7 @@ function findMatch(criteria, record) {
 }
 
 function getKey(name, id) {
-  return name + "-" + id;
+  return `${name}-${id}`;
 }
 
 export default {
