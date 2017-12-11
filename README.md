@@ -4,13 +4,11 @@
 
 ![depot.js](http://oi45.tinypic.com/xoiq7l.jpg)
 
-
 ## Description
 
 **depot.js** is a namespaced [localStorage](http://diveintohtml5.info/storage.html) wrapper with a simple API.
 There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but none
 of them had what I was looking for.
-
 
 ## Setup
 
@@ -61,7 +59,7 @@ import depot from 'depotjs';
 #### Define new store
 
 ```js
-const todoStore = depot('todos');
+const todos = depot('todos');
 ```
 
 #### Add new records
@@ -69,21 +67,27 @@ const todoStore = depot('todos');
 `_id` property will be generated as GUID and attached to each new record:
 
 ```js
-todoStore.save({ title: "todo1" });
-todoStore.save({ title: "todo2", completed: true });
-todoStore.save({ title: "todo3", completed: true });
+todos.save({ title: "todo1" });
+todos.save({ title: "todo2", completed: true });
+todos.save({ title: "todo3", completed: true });
+```
+
+#### Add multiple records at once
+
+```js
+todos.saveAll([ { title: "todo1" }, { title: "todo2" }, { title: "todo3" } ]);
 ```
 
 #### Update all records
 
 ```js
-todoStore.updateAll({ completed: false });
+todos.updateAll({ completed: false });
 ```
 
 #### Return all records
 
 ```js
-todoStore.all(); // [{ _id: 1, title "todo1" }, { _id: 2, title: todo2 }]
+todos.all(); // [{ _id: 1, title "todo1" }, { _id: 2, title: todo2 }]
 ```
 
 #### Find records
@@ -91,20 +95,20 @@ todoStore.all(); // [{ _id: 1, title "todo1" }, { _id: 2, title: todo2 }]
 * find based on given criteria
 
 ```js
-todoStore.find({ completed: true }); // [{ _id: 2, title: "todo2" }, { _id: 3, title: "todo3" }]
+todos.find({ completed: true }); // [{ _id: 2, title: "todo2" }, { _id: 3, title: "todo3" }]
 ```
 
 * find based on given function
 
 ```js
-todoStore.find(record => record.completed && record.title == "todo3"); // [{ _id: 3, title: "todo3" }]
+todos.find(record => record.completed && record.title == "todo3"); // [{ _id: 3, title: "todo3" }]
 ```
 
 
 #### Return single record by id
 
 ```js
-todoStore.get(1); // { _id: 1, title: "todo1" }
+todos.get(1); // { _id: 1, title: "todo1" }
 ```
 
 #### Destroy single record
@@ -112,13 +116,13 @@ todoStore.get(1); // { _id: 1, title: "todo1" }
 * by record id
 
 ```js
-todoStore.destroy(1);
+todos.destroy(1);
 ```
 
 * by record object
 
 ```js
-todoStore.destroy(todo);
+todos.destroy(todo);
 ```
 
 #### Destroy all records
@@ -126,27 +130,27 @@ todoStore.destroy(todo);
 * destroy all
 
 ```js
-todoStore.destroyAll();
+todos.destroyAll();
 ```
 
 * destroy by given criteria
 
 ```js
-todoStore.destroyAll({ completed: true });
+todos.destroyAll({ completed: true });
 ```
 
 * destroy by given function
 
 ```js
-todoStore.destroyAll(record => record.completed && record.title === "todo3");
+todos.destroyAll(record => record.completed && record.title === "todo3");
 ```
 
 ## Options
 
-You can pass a second parameter to depot.js with additional options.
+You can pass a second parameter to `depot` with additional options.
 
 ```js
-const todoStore = depot("todos", options);
+const todos = depot("todos", options);
 ```
 
 ### Available options:
@@ -154,13 +158,13 @@ const todoStore = depot("todos", options);
 + idAttribute - used to override record id property (default: `_id`)
 
 ```js
-const todoStore = depot("todos", { idAttribute: 'id' });
+const todos = depot("todos", { idAttribute: 'id' });
 ```
 
 + storageAdaptor - used to override storage type (default: `localStorage`)
 
 ```js
-const todoStore = depot('todos', { storageAdaptor: sessionStorage });
+const todos = depot('todos', { storageAdaptor: sessionStorage });
 ```
 
 
