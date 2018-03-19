@@ -15,9 +15,14 @@ export default class MemoryAdaptor extends CoreAdaptor {
 
     const id = record[this.idAttribute];
 
-    if (this.ids.indexOf(id) < 0) {
+    const index = this.ids.indexOf(id);
+    
+    if (index < 0) {
       this.store.push(record);
       this.ids.push(id);
+    }
+    else {
+      this.store[index] = record;
     }
 
     return record;
