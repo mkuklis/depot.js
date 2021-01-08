@@ -1,3 +1,7 @@
+## 1.1.0 / 2021-01-08
+
+* Use jest for testing and microbundle for bundling
+
 ## 1.0.1 / 2017-12-06
 
 * Fix package setup

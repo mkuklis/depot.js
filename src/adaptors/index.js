@@ -5,5 +5,5 @@ import FileAdaptor from './local_storage_adaptor';
 export {
   LocalStorageAdaptor,
   MemoryAdaptor,
-  FileAdaptor
+  FileAdaptor,
 };
