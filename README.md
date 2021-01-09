@@ -166,15 +166,6 @@ const todos = depot('todos', { storageAdaptor: sessionStorage });
 ```
 
 
-## Contributors:
-
-* [@mkuklis](http://github.com/mkuklis)
-* [@scttnlsn](http://github.com/scttnlsn)
-* [@chrispitt](http://github.com/chrispitt)
-* [@simonsmith](http://github.com/simonsmith)
-* [@mdlawson](http://github.com/mdlawson)
-* [@jdbartlett](http://github.com/jdbartlett)
-
 ## License:
 <pre>
 The MIT License
