@@ -1,10 +1,10 @@
-## depot.js
+## 📦 depot.js
 
 [![build status](https://secure.travis-ci.org/mkuklis/depot.js.png)](http://travis-ci.org/mkuklis/depot.js)
 
 ## Description
 
-📦 **depot.js** is a namespaced [localStorage](http://diveintohtml5.info/storage.html) wrapper with a simple API.
+**depot.js** is a namespaced [localStorage](http://diveintohtml5.info/storage.html) wrapper with a simple API.
 There are [other](http://brian.io/lawnchair/) [tools](https://github.com/marcuswestin/store.js/) out there but none
 of them had what I was looking for.
 
