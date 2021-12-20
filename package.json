@@ -17,13 +17,13 @@
   },
   "analyze": false,
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "babel-jest": "^26.6.3",
-    "eslint": "^7.17.0",
-    "jest": "^26.6.3",
-    "microbundle": "^0.13.0",
-    "mock-local-storage": "1.0.5"
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-jest": "^27.4.5",
+    "eslint": "^8.5.0",
+    "jest": "^27.4.5",
+    "jest-localstorage-mock": "^2.4.18",
+    "microbundle": "^0.14.2"
   },
   "license": "MIT"
 }
